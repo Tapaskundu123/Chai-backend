@@ -2,6 +2,7 @@
   "name": "chai-backend",
   "version": "1.0.0",
   "description": "this is a backend setup with mongoDB",
+  "type": "commonjs",
   "keywords": [
     "javascript",
     "backend",
@@ -9,9 +10,11 @@
   ],
   "license": "ISC",
   "author": "Tapas",
-  "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
