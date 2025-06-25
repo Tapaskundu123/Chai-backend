@@ -1,10 +1,10 @@
-import express from 'express';
+// import express from 'express';
 import dotenv from 'dotenv';
 import ConnectDB from './db/index.js';
-
+import app from './app.js';
 dotenv.config(); // Load from .env file
 
-const app = express();
+// const App = express();
 
 // MongoDB connection
 ConnectDB()
