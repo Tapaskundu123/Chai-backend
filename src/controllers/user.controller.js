@@ -32,7 +32,7 @@ const generateAccessAndRefreshToken= async(userId)=>{
 }
    // steps for register user-> part-1
 
-const registerUser= asyncHandler(async(req,res)=>{
+    export const registerUser= asyncHandler(async(req,res)=>{
 
    //get user details from frontend
    // validation- not empty
@@ -122,7 +122,7 @@ const registerUser= asyncHandler(async(req,res)=>{
 })
 
   //login User data part-2
-  const loginUser= asyncHandler(async(req,res)=>{
+    export const loginUser= asyncHandler(async(req,res)=>{
    // steps
    // req.body-> collect data (server) by post request
    // username or email
@@ -183,9 +183,31 @@ const registerUser= asyncHandler(async(req,res)=>{
              ) 
        })
 
-  const loggedOutUser= asyncHandler(async(req,res)=>{
+    export const loggedOutUser= asyncHandler(async(req,res)=>{
       
-       User.findById()
+       await User.findByIdAndUpdate(
+
+         req.user._id,
+         {
+             $set:{
+               refreshToken:undefined
+             }
+         },
+         {
+            new: true
+         }
+       )
+       const options= {
+         HttpOnly: true,
+         secure: true
+       }
+
+       return res
+       .status(200)
+       .clearCookie("accessToken", options)
+       .clearCookie("refreshToken",options)
+       .json(new ApiResponse(200,{},"User logged out"))
+
   })     
 
 export default registerUser;
