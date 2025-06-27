@@ -5,10 +5,7 @@ import {ApiError} from '../utils/ApiError.js'// 2
 import { User } from '../models/user.model.js'; //3
 import { uploadOnCloudinary } from '../utils/cloudinary.js';
 import {ApiResponse} from '../utils/ApiResponse.js'
-import { HttpProxy } from 'vite';
-
-
-
+// import { HttpProxy } from 'vite';
 
 // from part- 2
 
@@ -135,7 +132,7 @@ const generateAccessAndRefreshToken= async(userId)=>{
    const {username, password, email}= req.body;
    
   // 2) username or email if any available or not
-   if(!username || !email){
+ if(!(username || email)){
       throw new ApiError(400,"username or email is required")
    }
 

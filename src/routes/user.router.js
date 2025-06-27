@@ -20,6 +20,6 @@ router.route('/register').post(
 
     router.route("/login").post(loginUser)
 
-    router.route('./logout').post(verifyJWT,loggedOutUser)
+    router.route('/logout').post(verifyJWT,loggedOutUser)
 
 export default router;
