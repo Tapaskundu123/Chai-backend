@@ -14,8 +14,8 @@ const generateAccessAndRefreshToken= async(userId)=>{
    try {
      const user= await User.findById(userId)
 
-     const accessToken= user.generateAccessToken()
-     const refreshToken= user.generateRefreshToken()
+     const accessToken= await user.generateAccessToken()
+     const refreshToken= await user.generateRefreshToken()
 
       user.refreshToken= refreshToken;
 
@@ -157,7 +157,7 @@ const generateAccessAndRefreshToken= async(userId)=>{
 
    const {accessToken, refreshToken}= await generateAccessAndRefreshToken(checkUserInDB._id)
 
-   const loggedInUser= await User.findById(checkUserInDB._id).select("-password -refreshToken")
+   const loggedInUser= await User.findById(checkUserInDB._id).select("-password -refreshToken") // doc having not present -password -refreshToken
 
    const options={
 
